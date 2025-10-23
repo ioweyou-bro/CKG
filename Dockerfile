@@ -39,17 +39,15 @@ RUN groupadd ckg_group && \
     usermod -a -G ckg_group nginx
 
 
-RUN wget https://www.python.org/ftp/python/3.7.9/Python-3.7.9.tgz
-RUN tar -xzf Python-3.7.9.tgz
-WORKDIR /Python-3.7.9
-RUN ./configure
+RUN wget https://www.python.org/ftp/python/3.10.13/Python-3.10.13.tgz
+RUN tar -xzf Python-3.10.13.tgz
+WORKDIR /Python-3.10.13
+RUN ./configure --enable-optimizations
 RUN make altinstall
 RUN make install
 ## pip upgrade
-RUN wget https://bootstrap.pypa.io/get-pip.py
-RUN python3 get-pip.py
-RUN pip3 install --upgrade pip
-RUN pip3 install setuptools
+RUN python3 -m pip install --upgrade pip
+RUN pip3 install setuptools wheel
 
 WORKDIR /
 
@@ -154,7 +152,11 @@ RUN ls -alrth data
 WORKDIR /
 
 # JupyterHub
-RUN apt-get -y install npm nodejs && \
+# Install Node.js 18 LTS from NodeSource
+RUN apt-get update && \
+    apt-get install -y curl && \
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && \
     npm install -g configurable-http-proxy
 RUN pip3 install jupyterhub
 
