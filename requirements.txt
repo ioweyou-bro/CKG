@@ -35,7 +35,7 @@ nltk==3.8.1
 dash_cytoscape>=0.3.0
 networkx==3.1
 chart-studio==1.1.0
-xhtml2pdf==0.2.11
+xhtml2pdf==0.2.16
 lxml==4.9.3
 celery==5.3.4
 kombu==5.3.4
