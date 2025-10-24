@@ -17,7 +17,7 @@ RUN apt-get update && \
     apt-get install -yq locales && \
     apt-get install -yq wget && \
     apt-get install -yq unzip && \
-    apt-get install -yq build-essential sqlite3 libsqlite3-dev libxml2 libxml2-dev zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libcurl4-openssl-dev && \
+    apt-get install -yq build-essential sqlite3 libsqlite3-dev libxml2 libxml2-dev zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libcurl4-openssl-dev libbz2-dev && \
     apt-get install -yq nginx && \
     apt-get install -yq redis-server && \
     apt-get install -y dos2unix && \
