@@ -51,7 +51,7 @@ app.layout = dcc.Loading(children=[html.Div([dcc.Location(id='url', refresh=Fals
 @app.callback([Output('page-content', 'children'),
                Output('logout_form', 'style'),
                Output('error_msg', 'style')],
-              [Input('url', 'href')])
+              [Input('url', 'pathname')])
 def display_page(pathname):
     session_cookie = flask.request.cookies.get('custom-auth-session')
     logged_in = session_cookie is not None
@@ -113,7 +113,7 @@ def display_page(pathname):
             return (imports.layout, {'display': 'block',
                                      'position': 'absolute',
                                      'right': '50px'}, {'display': 'none'})
-        elif '/apps/homepage' in pathname or pathname.count('/') <= 3:
+        elif '/apps/homepage' in pathname or pathname == '/' or pathname is None:
             stats_db = homepageApp.HomePageApp("CKG homepage", "Database Stats", "", layout=[], logo=None, footer=None)
             return (stats_db.layout, {'display': 'block',
                                       'position': 'absolute',
@@ -386,7 +386,7 @@ def route_full_update():
 
 @app.callback(Output('download-zip', 'href'),
               [Input('download-zip', 'n_clicks')],
-              [State('url', 'href')])
+              [State('url', 'pathname')])
 def generate_report_url(n_clicks, pathname):
     project_id, force, session_id = get_project_params_from_url(pathname)
     return '/downloads/{}'.format(project_id)
@@ -406,7 +406,7 @@ def route_example_files_url():
 @app.callback(Output('regenerate', 'href'),
               [Input('regenerate', 'n_clicks'),
                Input('regenerate', 'title')],
-              [State('url', 'href')])
+              [State('url', 'pathname')])
 def regenerate_report(n_clicks, title, pathname):
     basic_path = '/'.join(pathname.split('/')[0:3])
     project_id, force, session_id = get_project_params_from_url(pathname)
