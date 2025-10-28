@@ -129,7 +129,7 @@ RUN python3 -m pip install --ignore-installed -r requirements.txt
 RUN mkdir /CKG
 COPY --chown=nginx ckg /CKG/ckg
 COPY data /CKG/data
-RUN wget -O /CKG/data.zip https://datashare.biochem.mpg.de/s/fP6MKhLRfceWwxC/download
+RUN wget --timeout=300 --tries=5 --retry-connrefused --wait=10 --read-timeout=300 -O /CKG/data.zip https://datashare.biochem.mpg.de/s/fP6MKhLRfceWwxC/download
 RUN unzip /CKG/data.zip -d /CKG/.
 RUN chown -R nginx /CKG/data
 COPY docker_entrypoint.sh /CKG/.

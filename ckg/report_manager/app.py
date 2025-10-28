@@ -20,7 +20,7 @@ app.index_string = template
 app.scripts.config.serve_locally = False
 app.config.suppress_callback_exceptions = True
 
-external_js = ["http://code.jquery.com/jquery-3.4.1.min.js"]
+external_js = ["https://code.jquery.com/jquery-3.4.1.min.js"]
 
 for js in external_js:
     app.scripts.append_script({"external_url": js})

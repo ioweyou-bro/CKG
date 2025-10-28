@@ -38,6 +38,8 @@ except Exception as err:
     logger.error("Reading configuration > {}.".format(err))
 
 app.layout = dcc.Loading(children=[html.Div([dcc.Location(id='url', refresh=False),
+                                             html.Div(id='logout_form', style={'display': 'none'}),
+                                             html.Div(id='error_msg', style={'display': 'none'}),
                                              html.Div(id='page-content',
                                                       style={'padding-top': 10},
                                                       className='container-fluid')])],
