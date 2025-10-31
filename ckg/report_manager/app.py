@@ -17,7 +17,7 @@ with open(os.path.join(assets_path, "app_template.html"), 'r', encoding='utf8') 
 
 
 app.index_string = template
-app.scripts.config.serve_locally = False
+app.scripts.config.serve_locally = True
 app.config.suppress_callback_exceptions = True
 
 external_js = ["https://code.jquery.com/jquery-3.4.1.min.js"]
