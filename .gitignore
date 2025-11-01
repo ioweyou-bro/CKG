@@ -27,6 +27,10 @@
 *.sql
 *.sqlite
 
+# Customized Reference #
+########################
+/customized-reference
+
 # OS generated files #
 ######################
 .DS_Store
